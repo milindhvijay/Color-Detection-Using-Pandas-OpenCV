@@ -18,7 +18,7 @@ img = cv2.imread(img_path)
 
 #Reading CSV with Pandas
 index = ["color","color_name","hex","R","G","B"]
-csv = pd.read_csv('colors.csv', names=index. header=None)
+csv = pd.read_csv('colors.csv', names=index, header=None)
 
 #Function to calculate minimum distance from all colors
 def getColorName(R,G,B):
