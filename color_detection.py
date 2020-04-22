@@ -1,6 +1,6 @@
+import cv2
 import numpy as np
 import pandas as pd
-import cv2
 import argparse
 
 #Global variables
@@ -44,3 +44,28 @@ def draw_function(event,x,y,flags,param):
 
 cv2.namedWindow('image')
 cv2.setMouseCallback('image',draw_function)
+
+while(1):
+
+    cv2.imshow("image",img)
+    if(clicked):
+
+        #Image, startpoint, endpoint, color, thickness
+        cv2.rectangle(img,(20,20), (750,60), (b,g,r), -1)
+
+        #Text string to diplay color and RGB values
+        text = getColorName(r,g,b) + ' R='+ str(r) + ' G='+ str(g) + ' B='+ str(b)
+
+        cv2.putText(img, text,(50,50),2,0.8,(255,255,255),2,cv2.LINE_AA)
+
+        #For very light colours we will display text in black colour
+        if(r+g+b>=600):
+            cv2.putText(img, text,(50,50),2,0.8,(0,0,0),2,cv2.LINE_AA)
+            
+        clicked=False
+
+    #Break loop with esc
+    if cv2.waitKey(20) & 0xFF ==27:
+        break
+
+cv2.destroyAllWindows()
